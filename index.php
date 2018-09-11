@@ -8,10 +8,10 @@
 <html>
 	<head>
 		<meta charset='utf8'>
-		<title>Rövarspråket</title>
+		<title>The translator</title>
 	</head>
 	<body>
-    <h1>Rövarspråket</h1>
+    <h1>The translator</h1>
 		<?php
 		  $view->show();
 		?>

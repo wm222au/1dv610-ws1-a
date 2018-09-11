@@ -16,18 +16,22 @@ class TranslationView {
   public function toHTML() : string {
     $translate = (isset($_GET['translate']) ? $_GET['translate'] : ''); 
     if($translate) {
-      $translation = $this->translator->translate($translate);
+      $translation = $this->translator->translate($translate, intval($_GET['language']));
     }
 
     $output = '
     <form action="./" method="get">
       <input type="textarea" value="'.$translate.'" name="translate" id="translate">
+      <select name="language">
+        <option value="0">Rövarspråk</option>
+        <option value="1">Backwards</option>
+      </select>
       <input type="submit" value="Translate">
     </form>';
     
-    if(isset($translation)) {
+    if(isset($translation) && !empty($translation)) {
       $output .= '
-        <h2>Your translation: </h2>
+        <h2>Translated to: </h2>
         <p>'.$translation.'.</p>
       ';
     } else {
