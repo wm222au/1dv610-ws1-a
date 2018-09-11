@@ -1,14 +1,19 @@
 <?php
-  $translation = (isset($_GET['translation']) ? $_GET['translation'] : null); 
-  $translate = (isset($_GET['translate']) ? $_GET['translate'] : ''); 
+  require_once('TranslationView.php');
+
+  $view = new TranslationView();
 ?>
 
-<form action="./" method="get">
-  <input type="textarea" value="<?php echo $translate ?>" name="translate" id="translate">
-  <input type="submit" value="Translate">
-</form>
-
-<?php if($translation): ?>
-  <h2>Your translation: </h2>
-  <p><?php echo $translation ?></p>
-<?php endif; ?>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf8'>
+		<title>Rövarspråket</title>
+	</head>
+	<body>
+    <h1>Rövarspråket</h1>
+		<?php
+		  $view->show();
+		?>
+	</body>
+</html>
