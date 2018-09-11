@@ -2,9 +2,13 @@
 
 require_once('Translator.php');
 
-$translator = new Translator();
-
 class TranslationView {
+  private $translator;
+
+  public function __construct() {
+    $this->translator = new Translator();
+  }
+
   public function show() {
     echo $this->toHTML();
   }
@@ -12,7 +16,7 @@ class TranslationView {
   public function toHTML() : string {
     $translate = (isset($_GET['translate']) ? $_GET['translate'] : ''); 
     if($translate) {
-      $translation = $translator->translate($translate);
+      $translation = $this->translator->translate($translate);
     }
 
     $output = '
@@ -21,10 +25,14 @@ class TranslationView {
       <input type="submit" value="Translate">
     </form>';
     
-    if($translation) {
+    if(isset($translation)) {
       $output .= '
         <h2>Your translation: </h2>
-        <p>'.$translation.'</p>
+        <p>'.$translation.'.</p>
+      ';
+    } else {
+      $output .= '
+        Nothing to translate.
       ';
     }
 
